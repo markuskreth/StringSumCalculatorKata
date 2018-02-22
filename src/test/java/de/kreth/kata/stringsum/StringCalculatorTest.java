@@ -42,6 +42,11 @@ class StringCalculatorTest {
 		assertInputProducesResult(100, "100,0", "50,50", "25,25,25,25", "1000,-900");
 	}
 	
+	@Test
+	void newLineDelimiter() {
+		assertEquals(2, StringCalculator.sum("1\n1"));
+	}
+	
 	void assertInputProducesResult(int result, String... inputs) {
 		for (String input: inputs) {
 			assertEquals(result, StringCalculator.sum(input));			
