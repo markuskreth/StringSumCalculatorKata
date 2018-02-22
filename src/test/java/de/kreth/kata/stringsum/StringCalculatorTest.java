@@ -17,5 +17,13 @@ class StringCalculatorTest {
 	void singleNumbersBecomeIntValue() {
 		assertEquals(1, StringCalculator.sum("1"));
 		assertEquals(2, StringCalculator.sum("2"));
+		assertEquals(31, StringCalculator.sum("31"));
+	}
+
+	@Test
+	void twoDigitsCommaSeparatedSummedUp() {
+		assertEquals(1, StringCalculator.sum("0,1"));
+		assertEquals(5, StringCalculator.sum("2,3"));
+		assertEquals(0, StringCalculator.sum("0,0"));
 	}
 }
