@@ -19,7 +19,18 @@ public class StringCalculator {
 			while(tok.hasMoreTokens()) {
 				int parseInt = Integer.parseInt(tok.nextToken());
 				if(parseInt<0) {
-					throw new IllegalArgumentException("negatives not allowed: " + parseInt);
+
+					StringBuilder msg = new StringBuilder("negatives not allowed: ");
+					msg.append(parseInt);
+					
+					while(tok.hasMoreTokens()) {
+						parseInt = Integer.parseInt(tok.nextToken());
+						if(parseInt<0) {
+							msg.append(",").append(parseInt);
+						}
+					}
+					
+					throw new IllegalArgumentException(msg.toString());
 				}
 				result += parseInt;
 			}

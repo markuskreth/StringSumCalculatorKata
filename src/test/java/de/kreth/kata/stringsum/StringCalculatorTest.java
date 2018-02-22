@@ -54,6 +54,27 @@ class StringCalculatorTest {
 	}
 	
 	@Test
+	void twoNegatives() {
+		IllegalArgumentException throwable = assertThrows(IllegalArgumentException.class, () -> {
+			StringCalculator.sum("-1,1,-1,1");
+		});
+
+		assertEquals("negatives not allowed: -1,-1", throwable.getMessage());
+
+		throwable = assertThrows(IllegalArgumentException.class, () -> {
+			StringCalculator.sum("-1,-2,-10,-11");
+		});
+
+		assertEquals("negatives not allowed: -1,-2,-10,-11", throwable.getMessage());
+		throwable = assertThrows(IllegalArgumentException.class, () -> {
+			StringCalculator.sum("-1, -2, -10, -11");
+		});
+
+		assertEquals("negatives not allowed: -1,-2,-10,-11", throwable.getMessage());
+		
+	}
+	
+	@Test
 	void differentStringsProduce1() {
 		assertInputProducesResult(1, "1", "1,0", "0,1", "0,0,1,0");
 	}
