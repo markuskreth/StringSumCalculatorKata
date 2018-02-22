@@ -17,7 +17,11 @@ public class StringCalculator {
 		if(numbers.matches("\\d+") == false) {
 			StringTokenizer tok = new StringTokenizer(numbers, ",\r\n/|;\t ");
 			while(tok.hasMoreTokens()) {
-				result += Integer.parseInt(tok.nextToken());
+				int parseInt = Integer.parseInt(tok.nextToken());
+				if(parseInt<0) {
+					throw new IllegalArgumentException("negatives not allowed: " + parseInt);
+				}
+				result += parseInt;
 			}
 		} else {
 			result = Integer.parseInt(numbers);

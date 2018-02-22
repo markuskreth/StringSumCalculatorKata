@@ -29,17 +29,38 @@ class StringCalculatorTest {
 
 	@Test
 	void differentStringsProduce0() {
-		assertInputProducesResult(0, "", "0,0", "0,0,0,0", "-1,1", "-1,1,-1,1");
+		assertInputProducesResult(0, "", "0,0", "0,0,0,0");
 	}
 
 	@Test
+	void sinlgeNegative() {
+		IllegalArgumentException throwable = assertThrows(IllegalArgumentException.class, () -> {
+			StringCalculator.sum("-1");
+		});
+		assertEquals("negatives not allowed: -1", throwable.getMessage());
+	}
+	
+	@Test
+	void secondNegative() {
+		IllegalArgumentException throwable = assertThrows(IllegalArgumentException.class, () -> {
+			StringCalculator.sum("1000,-900");
+		});
+		assertEquals("negatives not allowed: -900", throwable.getMessage());
+		throwable = assertThrows(IllegalArgumentException.class, () -> {
+			StringCalculator.sum("-1,1");
+		});
+		assertEquals("negatives not allowed: -1", throwable.getMessage());
+		
+	}
+	
+	@Test
 	void differentStringsProduce1() {
-		assertInputProducesResult(1, "1", "1,0", "0,1", "0,0,1,0", "-1,2", "-1,1,1");
+		assertInputProducesResult(1, "1", "1,0", "0,1", "0,0,1,0");
 	}
 
 	@Test
 	void bigValuesSumm() {
-		assertInputProducesResult(100, "100,0", "50,50", "25,25,25,25", "1000,-900");
+		assertInputProducesResult(100, "100,0", "50,50", "25,25,25,25");
 	}
 
 	@Test
