@@ -4,17 +4,18 @@ import java.util.StringTokenizer;
 
 public class StringCalculator {
 	
-	StringCalculator() {
-		// TODO Auto-generated constructor stub
-	}
+	StringCalculator() {}
 	
 	public static int sum(String numbers) {
+		
 		if(numbers == null || numbers.isEmpty()) {
 			return 0;
 		}
+		
 		int result = 0;
+		
 		if(numbers.matches("\\d+") == false) {
-			StringTokenizer tok = new StringTokenizer(numbers, ",\r\n");
+			StringTokenizer tok = new StringTokenizer(numbers, ",\r\n/|;\t ");
 			while(tok.hasMoreTokens()) {
 				result += Integer.parseInt(tok.nextToken());
 			}

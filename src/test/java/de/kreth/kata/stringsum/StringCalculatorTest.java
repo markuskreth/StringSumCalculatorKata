@@ -41,10 +41,25 @@ class StringCalculatorTest {
 	void bigValuesSumm() {
 		assertInputProducesResult(100, "100,0", "50,50", "25,25,25,25", "1000,-900");
 	}
-	
+
 	@Test
 	void newLineDelimiter() {
 		assertEquals(2, StringCalculator.sum("1\n1"));
+		assertEquals(2, StringCalculator.sum("2\n"));
+		assertEquals(2, StringCalculator.sum("2,\n"));
+	}
+
+	@Test
+	void slashDelimiter() {
+		assertEquals(2, StringCalculator.sum("1/1"));
+	}
+
+	@Test
+	void differentDelimiter() {
+		assertEquals(2, StringCalculator.sum("1;1"));
+		assertEquals(2, StringCalculator.sum("1\t1"));
+		assertEquals(2, StringCalculator.sum("1 1"));
+		assertEquals(2, StringCalculator.sum("1|1"));
 	}
 	
 	void assertInputProducesResult(int result, String... inputs) {
